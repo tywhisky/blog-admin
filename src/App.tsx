@@ -1,5 +1,6 @@
-import React from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Login from "../src/pages/Login/index";
 
 // import '../styles/global.css'
 
@@ -13,15 +14,15 @@ const App = () => {
   return (
     <Router>
       {/* <Layout> */}
-        <Routes>
-          <Route path="/" element={<div>这是页面</div>}/>
-          {/* <Route path="/login" element={<Login/>}/>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        {/* <Route path="/login" element={<Login/>}/>
           <Route path="/recovery-password" element={<RecoveryPassword/>}/>
           <Route path="*" element={<NotFound/>}/> */}
-        </Routes>
+      </Routes>
       {/* </Layout> */}
     </Router>
   );
-}
+};
 
 export default App;
