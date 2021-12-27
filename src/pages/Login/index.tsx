@@ -12,6 +12,7 @@ import Grid from "@mui/material/Grid";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { LOGIN } from "../../api";
 
 function Copyright(props: any) {
   return (
@@ -42,6 +43,9 @@ export default function Login() {
       email: data.get("email"),
       password: data.get("password"),
     });
+    LOGIN(data.get("email"), data.get("password")).then(res => {
+      console.log(res)
+    })
   };
 
   return (
