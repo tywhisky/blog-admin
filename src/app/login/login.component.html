@@ -4,11 +4,11 @@
             <h1>Hello World</h1>
         </div>
         <label>
-            <input type="text" placeholder="Email Address" />
+            <input [(ngModel)]="email" name="email" type="text" placeholder="Email Address"/>
         </label>
         <label>
-            <input type="password" placeholder="Password" />
+            <input [(ngModel)]="password" name="email" type="password" placeholder="Password" />
         </label>
-        <button class="red md:w-32" type="button"><i class="icon ion-md-lock"></i> Log in</button>
+        <button (click)="onLogin()" class="red md:w-32" type="button"><i class="icon ion-md-lock"></i> Log in</button>
     </form>
 </div>
