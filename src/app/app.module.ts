@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { IconsProviderModule } from "./icons-provider.module"
 import { NzLayoutModule } from "ng-zorro-antd/layout"
 import { NzMenuModule } from "ng-zorro-antd/menu"
+import { NzMessageService } from "ng-zorro-antd/message"
 import { LayoutComponent } from "./pages/layout/layout.component"
 import { LoginComponent } from "./pages/login/login.component"
 
@@ -35,6 +36,7 @@ registerLocaleData(zh)
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN },
+    { provide: NzMessageService },
     {
       provide: APOLLO_OPTIONS,
       useFactory: (httpLink: HttpLink) => {

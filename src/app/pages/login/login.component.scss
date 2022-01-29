@@ -62,7 +62,7 @@ label {
 }
 
 input {
-  margin-right: $ruler/2;
+  margin-right: $ruler;
   box-shadow: inset 2px 2px 5px $color-shadow, inset -5px -5px 10px $color-white;
   width: 100%;
   box-sizing: border-box;
@@ -94,18 +94,18 @@ button {
   }
 
   .icon {
-    margin-right: $ruler/2;
+    margin-right: $ruler;
   }
 
   &.unit {
-    border-radius: $ruler/2;
+    border-radius: $ruler;
     line-height: 0;
     width: $ruler * 3;
     height: $ruler * 3;
     display: inline-flex;
     justify-content: center;
     align-items: center;
-    margin: 0 $ruler/2;
+    margin: 0 $ruler;
     font-size: $ruler * 1.2;
 
     .icon {
