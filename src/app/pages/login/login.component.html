@@ -1,1 +1,26 @@
-<p>login works!</p>
+<div class="login-bg">
+  <form>
+    <div class="segment">
+      <h1>Hello World</h1>
+    </div>
+    <label>
+      <input
+        [(ngModel)]="email"
+        name="email"
+        type="text"
+        placeholder="Email Address"
+      />
+    </label>
+    <label>
+      <input
+        [(ngModel)]="password"
+        name="password"
+        type="password"
+        placeholder="Password"
+      />
+    </label>
+    <button (click)="onLogin()" class="red" type="button">
+      <i class="icon ion-md-lock"></i>Log in
+    </button>
+  </form>
+</div>
