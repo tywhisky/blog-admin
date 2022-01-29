@@ -9,6 +9,9 @@ import { registerLocaleData } from "@angular/common"
 import zh from "@angular/common/locales/zh"
 import { FormsModule } from "@angular/forms"
 import { HttpClientModule } from "@angular/common/http"
+import { APOLLO_OPTIONS } from "apollo-angular"
+import { HttpLink } from "apollo-angular/http"
+import { InMemoryCache } from "@apollo/client/core"
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { IconsProviderModule } from "./icons-provider.module"
 import { NzLayoutModule } from "ng-zorro-antd/layout"
@@ -30,7 +33,21 @@ registerLocaleData(zh)
     NzLayoutModule,
     NzMenuModule,
   ],
-  providers: [{ provide: NZ_I18N, useValue: zh_CN }],
+  providers: [
+    { provide: NZ_I18N, useValue: zh_CN },
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: (httpLink: HttpLink) => {
+        return {
+          cache: new InMemoryCache(),
+          link: httpLink.create({
+            uri: "/api/graphiql",
+          }),
+        }
+      },
+      deps: [HttpLink],
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
