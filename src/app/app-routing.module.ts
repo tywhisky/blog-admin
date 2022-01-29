@@ -10,9 +10,9 @@ const routes: Routes = [
     component: LayoutComponent,
     children: [
       {
-        path: "welcome",
+        path: "articles",
         loadChildren: () =>
-          import("./pages/welcome/welcome.module").then((m) => m.WelcomeModule),
+          import("./pages/articles/articles.module").then((m) => m.ArticlesModule),
       },
     ],
   },
