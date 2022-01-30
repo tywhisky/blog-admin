@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core"
 import { Apollo } from "apollo-angular"
 import gql from "graphql-tag"
-import {IPageParams} from "./common";
+import { IPageParams } from "./common"
 
 const articlesQuery = gql`
   query ($pageParams: PageParams) {
@@ -30,16 +30,14 @@ const articlesQuery = gql`
   providedIn: "root",
 })
 export class ArticleService {
-  constructor(
-      private apollo: Apollo
-  ) {}
+  constructor(private apollo: Apollo) {}
 
   getArticles(pageParams?: IPageParams) {
-    return this.apollo.watchQuery(
-        {
-          query: articlesQuery,
-          variables: pageParams
-        }
-    ).valueChanges
+    return this.apollo.watchQuery({
+      query: articlesQuery,
+      variables: {
+        pageParams: pageParams,
+      },
+    }).valueChanges
   }
 }
