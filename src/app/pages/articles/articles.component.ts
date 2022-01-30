@@ -3,8 +3,10 @@ import { ArticleService } from "../../services/article.service"
 import { NzMessageService } from "ng-zorro-antd/message"
 import { IPageInfo, IPageParams } from "../../services/common"
 import { NzTableQueryParams } from "ng-zorro-antd/table"
+import { NzModalRef, NzModalService } from "ng-zorro-antd/modal"
 
 interface Article {
+  id: string
   title: string
   clicks: number
   cover: string
@@ -29,10 +31,12 @@ export class ArticlesComponent implements OnInit {
     totalEntries: 0,
   } as IPageInfo
   loading: boolean = true
+  confirmModal?: NzModalRef
 
   constructor(
     private service: ArticleService,
-    private message: NzMessageService
+    private message: NzMessageService,
+    private modal: NzModalService
   ) {}
 
   getData(pageParams?: IPageParams) {
@@ -56,6 +60,28 @@ export class ArticlesComponent implements OnInit {
       pageSize: pageSize,
     }
     this.getData(pageParams)
+  }
+
+  onDelete(id: string): void {
+    this.confirmModal = this.modal.confirm({
+      nzTitle: "确认删除这篇文章吗?",
+      nzContent: "(删除后无法恢复)",
+      nzOnOk: () =>
+        new Promise((resolve, reject) => {
+          const that = this
+          this.service.deleteArticle(id).subscribe(
+            (result: any) => {
+              this.message.success("删除成功")
+              this.modal.closeAll()
+              that.getData()
+            },
+            (error) => {
+              this.message.error(error)
+            }
+          )
+          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
+        }).catch(() => console.log("Oops errors!")),
+    })
   }
 
   ngOnInit() {

@@ -7,6 +7,7 @@ import { NzTableModule } from "ng-zorro-antd/table"
 import { NzDividerModule } from "ng-zorro-antd/divider"
 import { CommonModule } from "@angular/common"
 import { NzImageModule } from "ng-zorro-antd/image"
+import { NzModalModule } from "ng-zorro-antd/modal"
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { NzImageModule } from "ng-zorro-antd/image"
     NzDividerModule,
     CommonModule,
     NzImageModule,
+    NzModalModule,
   ],
   declarations: [ArticlesComponent],
   exports: [ArticlesComponent],

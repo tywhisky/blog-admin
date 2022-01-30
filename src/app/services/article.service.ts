@@ -7,6 +7,7 @@ const articlesQuery = gql`
   query ($pageParams: PageParams) {
     articles(pageParams: $pageParams) {
       entries {
+        id
         category {
           id
           name
@@ -26,6 +27,14 @@ const articlesQuery = gql`
   }
 `
 
+const deleteArticleMutation = gql`
+  mutation ($id: ID!) {
+    deleteArticle(id: $id) {
+      id
+    }
+  }
+`
+
 @Injectable({
   providedIn: "root",
 })
@@ -39,5 +48,14 @@ export class ArticleService {
         pageParams: pageParams,
       },
     }).valueChanges
+  }
+
+  deleteArticle(id: string) {
+    return this.apollo.mutate({
+      mutation: deleteArticleMutation,
+      variables: {
+        id: id,
+      },
+    })
   }
 }

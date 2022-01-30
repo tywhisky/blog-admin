@@ -38,7 +38,7 @@
         <td>
           <a>Edit</a>
           <nz-divider nzType="vertical"></nz-divider>
-          <a>Delete</a>
+          <a (click)="onDelete(data.id)" style="color: red">Delete</a>
         </td>
       </tr>
     </tbody>
