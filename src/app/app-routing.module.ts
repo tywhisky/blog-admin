@@ -16,6 +16,13 @@ const routes: Routes = [
             (m) => m.ArticlesModule
           ),
       },
+      {
+        path: "add-article",
+        loadChildren: () =>
+            import("./pages/add-article/add-article.module").then(
+                (m) => m.AddArticleModule
+            ),
+      },
     ],
   },
   {

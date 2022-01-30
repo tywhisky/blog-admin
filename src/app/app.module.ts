@@ -18,12 +18,14 @@ import { NzLayoutModule } from "ng-zorro-antd/layout"
 import { NzMenuModule } from "ng-zorro-antd/menu"
 import { NzMessageService } from "ng-zorro-antd/message"
 import { LayoutComponent } from "./pages/layout/layout.component"
-import { LoginComponent } from "./pages/login/login.component"
+import { LoginComponent } from "./pages/login/login.component";
+import { AddArticleModule } from './pages/add-article/add-article.module';
+import { AddArticleComponent } from './pages/add-article/add-article.component'
 
 registerLocaleData(zh)
 
 @NgModule({
-  declarations: [AppComponent, LayoutComponent, LoginComponent],
+  declarations: [AppComponent, LayoutComponent, LoginComponent, AddArticleComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -33,6 +35,7 @@ registerLocaleData(zh)
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
+    AddArticleModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN },
