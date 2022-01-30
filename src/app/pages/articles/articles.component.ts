@@ -1,4 +1,7 @@
 import { Component, OnInit } from "@angular/core"
+import {ArticleService} from "../../services/article.service";
+import {NzMessageService} from "ng-zorro-antd/message";
+import {IPageInfo} from "../../services/common";
 
 interface Article {
   title: string
@@ -17,32 +20,25 @@ interface Article {
   styleUrls: ["./articles.component.scss"],
 })
 export class ArticlesComponent implements OnInit {
-  listOfData: Article[] = [
-    {
-      title: "哈哈",
-      clicks: 132,
-      cover:
-        "http://tva2.sinaimg.cn/mw600/008hBrJIgy1gytsmtrporj30fa0jfjtz.jpg",
-      status: "PENDING",
-      category: {
-        name: "技术",
-        id: "1",
-      },
-    },
-    {
-      title: "哈哈",
-      clicks: 132,
-      cover:
-        "http://tva2.sinaimg.cn/mw600/008hBrJIgy1gytsmtrporj30fa0jfjtz.jpg",
-      status: "PENDING",
-      category: {
-        name: "技术",
-        id: "1",
-      },
-    },
-  ]
+  entries: Article[] = []
+  pageInfo = {
+    page: 1,
+    pageSize: 10
+  } as IPageInfo
 
-  constructor() {}
+  constructor(
+      private service: ArticleService,
+      private message: NzMessageService
+  ) {}
 
-  ngOnInit() {}
+  getData() {
+    this.service.getArticles().subscribe((result: any) => {
+      this.entries = result.data.articles.entries
+      this.pageInfo = result.data.articles.pageInfo
+    },(error) => {this.message.error(error)})
+  }
+
+  ngOnInit() {
+    this.getData()
+  }
 }
