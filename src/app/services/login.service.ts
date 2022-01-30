@@ -15,7 +15,7 @@ const loginMutation = gql`
 @Injectable({
   providedIn: "root",
 })
-export class LoginServiceService {
+export class LoginService {
   constructor(
     private apollo: Apollo,
     private message: NzMessageService,
