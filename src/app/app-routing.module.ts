@@ -19,9 +19,9 @@ const routes: Routes = [
       {
         path: "add-article",
         loadChildren: () =>
-            import("./pages/add-article/add-article.module").then(
-                (m) => m.AddArticleModule
-            ),
+          import("./pages/add-article/add-article.module").then(
+            (m) => m.AddArticleModule
+          ),
       },
     ],
   },

@@ -1,22 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core"
 
-interface createArticleInput {
+interface ICreateArticleInput {
   title: String
-  cover: String
+  cover?: String
   categoryId: String
   body: String
 }
 
 @Component({
-  selector: 'app-add-article',
-  templateUrl: './add-article.component.html',
-  styleUrls: ['./add-article.component.scss']
+  selector: "app-add-article",
+  templateUrl: "./add-article.component.html",
+  styleUrls: ["./add-article.component.scss"],
 })
 export class AddArticleComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
+  createArticleInput: ICreateArticleInput = {
+    title: "",
+    cover: "",
+    categoryId: "",
+    body: "",
   }
 
+  constructor() {}
+
+  ngOnInit(): void {}
 }
