@@ -1,10 +1,10 @@
 import { Component, OnInit } from "@angular/core"
 
 interface ICreateArticleInput {
-  title: String
-  cover?: String
-  categoryId: String
-  body: String
+  title: string
+  cover?: string
+  categoryId: string
+  body: string
 }
 
 @Component({

@@ -20,7 +20,8 @@ import { NzMessageService } from "ng-zorro-antd/message"
 import { LayoutComponent } from "./pages/layout/layout.component"
 import { LoginComponent } from "./pages/login/login.component"
 import { AddArticleModule } from "./pages/add-article/add-article.module"
-import { AddArticleComponent } from "./pages/add-article/add-article.component"
+import { AddArticleComponent } from "./pages/add-article/add-article.component";
+import { MyInputComponent } from './components/my-input/my-input.component'
 
 registerLocaleData(zh)
 
@@ -30,6 +31,7 @@ registerLocaleData(zh)
     LayoutComponent,
     LoginComponent,
     AddArticleComponent,
+    MyInputComponent,
   ],
   imports: [
     BrowserModule,
