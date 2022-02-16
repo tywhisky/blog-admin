@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core"
 import { MdEditorOption, UploadResult } from "ngx-markdown-editor"
 import { DomSanitizer } from "@angular/platform-browser"
+import { CategoryService, ICategory } from "../../services/category.service"
 
 interface ICreateArticleInput {
   title: string
@@ -21,6 +22,7 @@ export class AddArticleComponent implements OnInit {
     categoryId: "",
     body: "",
   }
+  categories: Array<ICategory> = []
   selectedValue = null
 
   public options: MdEditorOption = {
@@ -33,12 +35,26 @@ export class AddArticleComponent implements OnInit {
   }
   public mode: string = "editor"
 
-  constructor(private _domSanitizer: DomSanitizer) {
+  constructor(
+    private _domSanitizer: DomSanitizer,
+    private categoryService: CategoryService
+  ) {
     this.preRender = this.preRender.bind(this)
     this.postRender = this.postRender.bind(this)
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.getCategories()
+  }
+
+  getCategories() {
+    this.categoryService.getCategories().subscribe(
+      (result: any) => {
+        this.categories = result.data.categories.entries
+      },
+      (_) => {}
+    )
+  }
 
   onSave() {
     console.log(this.createArticleInput)
@@ -62,16 +78,13 @@ export class AddArticleComponent implements OnInit {
   // }
 
   onEditorLoaded(editor: MdEditorOption) {
-    console.log(`ACE Editor Ins: `, editor)
     // editor.setOption('showLineNumbers', false);
-
     // setTimeout(() => {
     //   editor.setOption('showLineNumbers', true);
     // }, 2000);
   }
 
   preRender(mdContent: string) {
-    console.log(`preRender fired`)
     // return new Promise((resolve) => {
     //   setTimeout(() => {
     //     resolve(mdContent);
@@ -81,13 +94,11 @@ export class AddArticleComponent implements OnInit {
   }
 
   postRender(html: HTMLElement) {
-    console.log(`postRender fired`)
     // return '<h1>Test</h1>';
     return html
   }
 
   onPreviewDomChanged(dom: HTMLElement) {
-    console.log(`onPreviewDomChanged fired`)
     // console.log(dom);
     // console.log(dom.innerHTML)
   }

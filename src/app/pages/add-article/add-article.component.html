@@ -40,11 +40,13 @@
         nzShowSearch
         nzAllowClear
         nzPlaceHolder="Select a category"
-        [(ngModel)]="selectedValue"
+        [(ngModel)]="createArticleInput.categoryId"
       >
-        <nz-option nzLabel="Jack" nzValue="jack"></nz-option>
-        <nz-option nzLabel="Lucy" nzValue="lucy"></nz-option>
-        <nz-option nzLabel="Tom" nzValue="tom"></nz-option>
+        <nz-option
+          *ngFor="let category of categories"
+          [nzLabel]="category.name"
+          [nzValue]="category.id"
+        ></nz-option>
       </nz-select>
     </div>
   </div>
