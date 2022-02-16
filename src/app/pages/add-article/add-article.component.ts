@@ -2,13 +2,8 @@ import { Component, OnInit } from "@angular/core"
 import { MdEditorOption, UploadResult } from "ngx-markdown-editor"
 import { DomSanitizer } from "@angular/platform-browser"
 import { CategoryService, ICategory } from "../../services/category.service"
-
-interface ICreateArticleInput {
-  title: string
-  cover?: string
-  categoryId: string
-  body: string
-}
+import {ArticleService, ICreateArticleInput} from "../../services/article.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: "app-add-article",
@@ -37,7 +32,9 @@ export class AddArticleComponent implements OnInit {
 
   constructor(
     private _domSanitizer: DomSanitizer,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private articleService: ArticleService,
+    private router: Router
   ) {
     this.preRender = this.preRender.bind(this)
     this.postRender = this.postRender.bind(this)
@@ -57,7 +54,11 @@ export class AddArticleComponent implements OnInit {
   }
 
   onSave() {
-    console.log(this.createArticleInput)
+    this.articleService.createArticle(this.createArticleInput).subscribe(
+        (result: any) => {
+          this.router.navigateByUrl("/articles")
+        }
+    )
   }
 
   // doUpload(files: Array<File>): Promise<Array<UploadResult>> {

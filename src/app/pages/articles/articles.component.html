@@ -25,12 +25,14 @@
         <td>{{ data.title }}</td>
         <td>
           <img
+            *ngIf="data.cover"
             nz-image
             width="50px"
             height="50px"
             [nzSrc]="data.cover"
             alt=""
           />
+          <span *ngIf="!data.cover">/</span>
         </td>
         <td>{{ data.category?.name }}</td>
         <td>{{ data.clicks }}</td>

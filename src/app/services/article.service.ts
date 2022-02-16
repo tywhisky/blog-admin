@@ -3,6 +3,13 @@ import { Apollo } from "apollo-angular"
 import gql from "graphql-tag"
 import { IPageParams } from "./common"
 
+export interface ICreateArticleInput {
+  title: string
+  cover?: string
+  categoryId: string
+  body: string
+}
+
 const articlesQuery = gql`
   query ($pageParams: PageParams) {
     articles(pageParams: $pageParams) {
@@ -35,6 +42,14 @@ const deleteArticleMutation = gql`
   }
 `
 
+const createArticleMutation = gql`
+  mutation ($article: CreateArticleInput!) {
+    createArticle(article: $article) {
+      id
+    }
+  }
+`
+
 @Injectable({
   providedIn: "root",
 })
@@ -56,6 +71,15 @@ export class ArticleService {
       variables: {
         id: id,
       },
+    })
+  }
+
+  createArticle(article: ICreateArticleInput) {
+    return this.apollo.mutate({
+      mutation: createArticleMutation,
+      variables: {
+        article: article
+      }
     })
   }
 }
