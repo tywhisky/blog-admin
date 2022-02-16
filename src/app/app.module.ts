@@ -20,8 +20,10 @@ import { NzMessageService } from "ng-zorro-antd/message"
 import { LayoutComponent } from "./pages/layout/layout.component"
 import { LoginComponent } from "./pages/login/login.component"
 import { AddArticleModule } from "./pages/add-article/add-article.module"
-import { AddArticleComponent } from "./pages/add-article/add-article.component";
-import { MyInputComponent } from './components/my-input/my-input.component'
+import { AddArticleComponent } from "./pages/add-article/add-article.component"
+import { MyInputComponent } from "./components/my-input/my-input.component"
+import { LMarkdownEditorModule } from "ngx-markdown-editor"
+import { NzSelectModule } from "ng-zorro-antd/select"
 
 registerLocaleData(zh)
 
@@ -43,6 +45,8 @@ registerLocaleData(zh)
     NzLayoutModule,
     NzMenuModule,
     AddArticleModule,
+    LMarkdownEditorModule,
+    NzSelectModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN },
