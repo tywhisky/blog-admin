@@ -40,17 +40,17 @@ export class ArticlesComponent implements OnInit {
   ) {}
 
   getData(pageParams?: IPageParams) {
-    this.service.getArticles(pageParams).subscribe(
-      (result: any) => {
+    this.service.getArticles(pageParams).subscribe({
+      next: (result: any) => {
         this.entries = result.data.articles.entries
         this.pageInfo = result.data.articles.pageInfo
         this.loading = false
       },
-      (error) => {
+      error: (error) => {
         this.message.error(error)
         this.loading = false
-      }
-    )
+      },
+    })
   }
 
   onPageChange(params: NzTableQueryParams): void {
@@ -69,22 +69,25 @@ export class ArticlesComponent implements OnInit {
       nzOnOk: () =>
         new Promise((resolve, reject) => {
           const that = this
-          this.service.deleteArticle(id).subscribe(
-            (result: any) => {
+          this.service.deleteArticle(id).subscribe({
+            next: (result: any) => {
               this.message.success("删除成功")
               this.modal.closeAll()
               that.getData()
             },
-            (error) => {
+            error: (error) => {
               this.message.error(error)
-            }
-          )
+            },
+          })
           setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
         }).catch(() => console.log("Oops errors!")),
     })
   }
 
   ngOnInit() {
-    this.getData()
+    this.getData({
+      page: 1,
+      pageSize: 10,
+    })
   }
 }

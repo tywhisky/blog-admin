@@ -11,7 +11,7 @@ import { FormsModule } from "@angular/forms"
 import { HttpClientModule } from "@angular/common/http"
 import { APOLLO_OPTIONS } from "apollo-angular"
 import { HttpLink } from "apollo-angular/http"
-import { InMemoryCache } from "@apollo/client/core"
+import { DefaultOptions, InMemoryCache } from "@apollo/client/core"
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
 import { IconsProviderModule } from "./icons-provider.module"
 import { NzLayoutModule } from "ng-zorro-antd/layout"
@@ -26,6 +26,17 @@ import { LMarkdownEditorModule } from "ngx-markdown-editor"
 import { NzSelectModule } from "ng-zorro-antd/select"
 
 registerLocaleData(zh)
+
+const defaultOptions: DefaultOptions = {
+  watchQuery: {
+    fetchPolicy: "network-only",
+    errorPolicy: "ignore",
+  },
+  query: {
+    fetchPolicy: "network-only",
+    errorPolicy: "all",
+  },
+}
 
 @NgModule({
   declarations: [
@@ -59,6 +70,7 @@ registerLocaleData(zh)
           link: httpLink.create({
             uri: "/api/graphiql",
           }),
+          defaultOptions: defaultOptions,
         }
       },
       deps: [HttpLink],

@@ -78,8 +78,8 @@ export class ArticleService {
     return this.apollo.mutate({
       mutation: createArticleMutation,
       variables: {
-        article: article
-      }
+        article: article,
+      },
     })
   }
 }
