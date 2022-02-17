@@ -1,5 +1,8 @@
 import { Component, OnInit } from "@angular/core"
-import { ArticleService } from "../../services/article.service"
+import {
+  ArticleService,
+  IUpdateArticleInput,
+} from "../../services/article.service"
 import { NzMessageService } from "ng-zorro-antd/message"
 import { IPageInfo, IPageParams } from "../../services/common"
 import { NzTableQueryParams } from "ng-zorro-antd/table"
@@ -27,8 +30,6 @@ export class ArticlesComponent implements OnInit {
   pageInfo = {
     pageNumber: 1,
     pageSize: 10,
-    totalPages: 0,
-    totalEntries: 0,
   } as IPageInfo
   loading: boolean = true
   confirmModal?: NzModalRef
@@ -73,6 +74,30 @@ export class ArticlesComponent implements OnInit {
               this.message.success("删除成功")
               this.modal.closeAll()
               that.getData()
+            },
+            error: (error) => {
+              this.message.error(error)
+            },
+          })
+          setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
+        }).catch(() => console.log("Oops errors!")),
+    })
+  }
+
+  onChangeStatus(id: string, status: IUpdateArticleInput["status"]): void {
+    this.confirmModal = this.modal.confirm({
+      nzTitle: "确认" + status + "?",
+      nzOnOk: () =>
+        new Promise((resolve, reject) => {
+          const that = this
+          let article: IUpdateArticleInput = {
+            status: status,
+          }
+          this.service.updateArticle(id, article).subscribe({
+            next: (result: any) => {
+              this.message.success(status + "成功")
+              this.modal.closeAll()
+              this.getData()
             },
             error: (error) => {
               this.message.error(error)

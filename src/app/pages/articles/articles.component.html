@@ -40,6 +40,22 @@
         <td>
           <a>Edit</a>
           <nz-divider nzType="vertical"></nz-divider>
+          <a
+            *ngIf="data.status !== 'ONLINE'"
+            (click)="onChangeStatus(data.id, 'ONLINE')"
+            style="color: green"
+            >Online</a
+          >
+          <a *ngIf="data.status === 'ONLINE'" style="color: #eeeaea">Online</a>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a
+            *ngIf="data.status === 'ONLINE'"
+            (click)="onChangeStatus(data.id, 'OFFLINE')"
+            style="color: orange"
+            >OFFLINE</a
+          >
+          <a *ngIf="data.status !== 'ONLINE'" style="color: #eeeaea">OFFLINE</a>
+          <nz-divider nzType="vertical"></nz-divider>
           <a (click)="onDelete(data.id)" style="color: red">Delete</a>
         </td>
       </tr>

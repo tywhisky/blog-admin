@@ -10,6 +10,14 @@ export interface ICreateArticleInput {
   body: string
 }
 
+export interface IUpdateArticleInput {
+  title?: string
+  cover?: string
+  categoryId?: string
+  body?: string
+  status?: "PENDING" | "ONLINE" | "OFFLINE"
+}
+
 const articlesQuery = gql`
   query ($pageParams: PageParams) {
     articles(pageParams: $pageParams) {
@@ -49,6 +57,13 @@ const createArticleMutation = gql`
     }
   }
 `
+const updateArticleMutation = gql`
+  mutation ($id: ID!, $article: UpdateArticleInput!) {
+    updateArticle(id: $id, article: $article) {
+      id
+    }
+  }
+`
 
 @Injectable({
   providedIn: "root",
@@ -78,6 +93,16 @@ export class ArticleService {
     return this.apollo.mutate({
       mutation: createArticleMutation,
       variables: {
+        article: article,
+      },
+    })
+  }
+
+  updateArticle(id: string, article: IUpdateArticleInput) {
+    return this.apollo.mutate({
+      mutation: updateArticleMutation,
+      variables: {
+        id: id,
         article: article,
       },
     })
