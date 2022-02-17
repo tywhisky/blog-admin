@@ -65,7 +65,6 @@ export class ArticlesComponent implements OnInit {
   onDelete(id: string): void {
     this.confirmModal = this.modal.confirm({
       nzTitle: "确认删除这篇文章吗?",
-      nzContent: "(删除后无法恢复)",
       nzOnOk: () =>
         new Promise((resolve, reject) => {
           const that = this

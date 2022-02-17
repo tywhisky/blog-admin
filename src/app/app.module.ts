@@ -24,6 +24,12 @@ import { AddArticleComponent } from "./pages/add-article/add-article.component"
 import { MyInputComponent } from "./components/my-input/my-input.component"
 import { LMarkdownEditorModule } from "ngx-markdown-editor"
 import { NzSelectModule } from "ng-zorro-antd/select"
+import { CategoriesComponent } from "./pages/categories/categories.component"
+import { NzInputModule } from "ng-zorro-antd/input"
+import { NzTableModule } from "ng-zorro-antd/table"
+import { NzDividerModule } from "ng-zorro-antd/divider"
+import { NzModalModule } from "ng-zorro-antd/modal"
+import { NzButtonModule } from "ng-zorro-antd/button"
 
 registerLocaleData(zh)
 
@@ -45,6 +51,7 @@ const defaultOptions: DefaultOptions = {
     LoginComponent,
     AddArticleComponent,
     MyInputComponent,
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule,
@@ -58,6 +65,11 @@ const defaultOptions: DefaultOptions = {
     AddArticleModule,
     LMarkdownEditorModule,
     NzSelectModule,
+    NzInputModule,
+    NzButtonModule,
+    NzTableModule,
+    NzDividerModule,
+    NzModalModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN },

@@ -33,6 +33,14 @@ const deleteCategoryMutation = gql`
   }
 `
 
+const createCategoryMutation = gql`
+  mutation ($category: CategoryInput!) {
+    createCategory(category: $category) {
+      id
+    }
+  }
+`
+
 @Injectable({
   providedIn: "root",
 })
@@ -53,6 +61,17 @@ export class CategoryService {
       mutation: deleteCategoryMutation,
       variables: {
         id: id,
+      },
+    })
+  }
+
+  createCategory(name: string) {
+    return this.apollo.mutate({
+      mutation: createCategoryMutation,
+      variables: {
+        category: {
+          name: name,
+        },
       },
     })
   }
