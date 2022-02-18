@@ -37,6 +37,11 @@ const routes: Routes = [
             (m) => m.CategoriesModule
           ),
       },
+      {
+        path: "links",
+        loadChildren: () =>
+          import("./pages/links/links.module").then((m) => m.LinksModule),
+      },
     ],
   },
   {

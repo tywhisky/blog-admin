@@ -1,0 +1,122 @@
+<div class="common-content">
+  <div style="margin-bottom: 20px">
+    <button nz-button (click)="open()">Create</button>
+  </div>
+  <nz-table
+    #basicTable
+    [nzData]="entries"
+    [nzFrontPagination]="false"
+    [nzLoading]="loading"
+  >
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>链接</th>
+        <th>标题</th>
+        <th>描述</th>
+        <th>顺序</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.id }}</td>
+        <td>{{ data.url }}</td>
+        <td>{{ data.title }}</td>
+        <td>{{ data.description }}</td>
+        <td>{{ data.order }}</td>
+        <td>
+          <nz-divider nzType="vertical"></nz-divider>
+          <a (click)="onDelete(data.id)" style="color: red">Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <nz-drawer
+    [nzBodyStyle]="{ overflow: 'auto' }"
+    [nzMaskClosable]="false"
+    [nzWidth]="720"
+    [nzVisible]="visible"
+    nzTitle="Create"
+    [nzFooter]="footerTpl"
+    (nzOnClose)="close()"
+  >
+    <form nz-form *nzDrawerContent>
+      <div nz-row [nzGutter]="8">
+        <div nz-col nzSpan="16">
+          <nz-form-item>
+            <nz-form-label>Title</nz-form-label>
+            <nz-form-control>
+              <input
+                [ngModelOptions]="{ standalone: true }"
+                [(ngModel)]="linkInput.title"
+                nz-input
+                placeholder="please enter user name"
+              />
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row [nzGutter]="8">
+        <div nz-col nzSpan="16">
+          <nz-form-item>
+            <nz-form-label>Url</nz-form-label>
+            <nz-form-control>
+              <nz-input-group nzAddOnBefore="http://">
+                <input
+                  [ngModelOptions]="{ standalone: true }"
+                  [(ngModel)]="linkInput.url"
+                  type="text"
+                  nz-input
+                  placeholder="please enter url"
+                />
+              </nz-input-group>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row [nzGutter]="8">
+        <div nz-col nzSpan="16">
+          <nz-form-item>
+            <nz-form-label>Order</nz-form-label>
+            <nz-form-control>
+              <nz-input-number
+                [ngModelOptions]="{ standalone: true }"
+                [(ngModel)]="linkInput.order"
+                style="width: 100%"
+                [nzMin]="1"
+                [nzMax]="99"
+                [nzStep]="1"
+              ></nz-input-number>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+      <div nz-row [nzGutter]="8">
+        <div nz-col nzSpan="24">
+          <nz-form-item>
+            <nz-form-label>Description</nz-form-label>
+            <nz-form-control>
+              <textarea
+                [ngModelOptions]="{ standalone: true }"
+                nz-input
+                placeholder="please enter url description"
+                [nzAutosize]="{ minRows: 4, maxRows: 4 }"
+                [(ngModel)]="linkInput.description"
+              ></textarea>
+            </nz-form-control>
+          </nz-form-item>
+        </div>
+      </div>
+    </form>
+
+    <ng-template #footerTpl>
+      <div style="float: right">
+        <button nz-button style="margin-right: 8px" (click)="close()">
+          Cancel
+        </button>
+        <button nz-button nzType="primary" (click)="onNew()">Submit</button>
+      </div>
+    </ng-template>
+  </nz-drawer>
+</div>

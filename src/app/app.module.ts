@@ -32,6 +32,10 @@ import { NzModalModule } from "ng-zorro-antd/modal"
 import { NzButtonModule } from "ng-zorro-antd/button"
 import { EditArticleModule } from "./pages/edit-article/edit-article.module"
 import { EditArticleComponent } from "./pages/edit-article/edit-article.component"
+import { LinksComponent } from "./pages/links/links.component"
+import { NzDrawerModule } from "ng-zorro-antd/drawer"
+import { NzFormModule } from "ng-zorro-antd/form"
+import { NzInputNumberModule } from "ng-zorro-antd/input-number"
 
 registerLocaleData(zh)
 
@@ -55,6 +59,7 @@ const defaultOptions: DefaultOptions = {
     EditArticleComponent,
     MyInputComponent,
     CategoriesComponent,
+    LinksComponent,
   ],
   imports: [
     BrowserModule,
@@ -74,6 +79,9 @@ const defaultOptions: DefaultOptions = {
     NzTableModule,
     NzDividerModule,
     NzModalModule,
+    NzDrawerModule,
+    NzFormModule,
+    NzInputNumberModule,
   ],
   providers: [
     { provide: NZ_I18N, useValue: zh_CN },
