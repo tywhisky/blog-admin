@@ -30,6 +30,8 @@ import { NzTableModule } from "ng-zorro-antd/table"
 import { NzDividerModule } from "ng-zorro-antd/divider"
 import { NzModalModule } from "ng-zorro-antd/modal"
 import { NzButtonModule } from "ng-zorro-antd/button"
+import { EditArticleModule } from "./pages/edit-article/edit-article.module"
+import { EditArticleComponent } from "./pages/edit-article/edit-article.component"
 
 registerLocaleData(zh)
 
@@ -50,6 +52,7 @@ const defaultOptions: DefaultOptions = {
     LayoutComponent,
     LoginComponent,
     AddArticleComponent,
+    EditArticleComponent,
     MyInputComponent,
     CategoriesComponent,
   ],
@@ -62,6 +65,7 @@ const defaultOptions: DefaultOptions = {
     IconsProviderModule,
     NzLayoutModule,
     NzMenuModule,
+    AddArticleModule,
     AddArticleModule,
     LMarkdownEditorModule,
     NzSelectModule,

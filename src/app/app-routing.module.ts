@@ -24,6 +24,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: "edit-article",
+        loadChildren: () =>
+          import("./pages/edit-article/edit-article.module").then(
+            (m) => m.EditArticleModule
+          ),
+      },
+      {
         path: "categories",
         loadChildren: () =>
           import("./pages/categories/categories.module").then(

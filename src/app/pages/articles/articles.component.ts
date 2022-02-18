@@ -7,6 +7,7 @@ import { NzMessageService } from "ng-zorro-antd/message"
 import { IPageInfo, IPageParams } from "../../services/common"
 import { NzTableQueryParams } from "ng-zorro-antd/table"
 import { NzModalRef, NzModalService } from "ng-zorro-antd/modal"
+import { Router } from "@angular/router"
 
 interface Article {
   id: string
@@ -37,7 +38,8 @@ export class ArticlesComponent implements OnInit {
   constructor(
     private service: ArticleService,
     private message: NzMessageService,
-    private modal: NzModalService
+    private modal: NzModalService,
+    private router: Router
   ) {}
 
   getData(pageParams?: IPageParams) {
@@ -105,6 +107,14 @@ export class ArticlesComponent implements OnInit {
           })
           setTimeout(Math.random() > 0.5 ? resolve : reject, 1000)
         }).catch(() => console.log("Oops errors!")),
+    })
+  }
+
+  goEdit(id: string) {
+    this.router.navigate(["/edit-article"], {
+      queryParams: {
+        id: id,
+      },
     })
   }
 

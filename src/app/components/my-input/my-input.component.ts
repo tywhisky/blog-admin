@@ -7,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core"
 })
 export class MyInputComponent implements OnInit {
   @Input() placeholder: string = "请输入内容"
-  @Input() inputModel: string = ""
+  @Input() inputModel: string | undefined = ""
   @Output() inputModelChange = new EventEmitter<string>()
 
   constructor() {}

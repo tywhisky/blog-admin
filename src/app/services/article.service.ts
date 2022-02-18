@@ -15,6 +15,7 @@ export interface IUpdateArticleInput {
   cover?: string
   categoryId?: string
   body?: string
+  clicks?: number
   status?: "PENDING" | "ONLINE" | "OFFLINE"
 }
 
@@ -38,6 +39,23 @@ const articlesQuery = gql`
         totalEntries
         totalPages
       }
+    }
+  }
+`
+
+const articleQuery = gql`
+  query ($id: ID!) {
+    article(id: $id) {
+      id
+      category {
+        id
+        name
+      }
+      clicks
+      cover
+      status
+      title
+      body
     }
   }
 `
@@ -71,6 +89,15 @@ const updateArticleMutation = gql`
 export class ArticleService {
   constructor(private apollo: Apollo) {}
 
+  getArticle(id: string | null | undefined) {
+    return this.apollo.watchQuery({
+      query: articleQuery,
+      variables: {
+        id: id,
+      },
+    }).valueChanges
+  }
+
   getArticles(pageParams?: IPageParams) {
     return this.apollo.watchQuery({
       query: articlesQuery,
@@ -98,7 +125,7 @@ export class ArticleService {
     })
   }
 
-  updateArticle(id: string, article: IUpdateArticleInput) {
+  updateArticle(id: string | null | undefined, article: IUpdateArticleInput) {
     return this.apollo.mutate({
       mutation: updateArticleMutation,
       variables: {
