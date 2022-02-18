@@ -38,7 +38,7 @@ export class LoginService {
         (result: any) => {
           sessionStorage.setItem("token", result?.data?.login.token)
           this.message.remove(loading)
-          this.router.navigateByUrl("/")
+          this.router.navigateByUrl("/articles")
         },
         (error) => {
           this.message.remove(loading)
