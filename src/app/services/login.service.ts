@@ -3,6 +3,7 @@ import { Apollo } from "apollo-angular"
 import gql from "graphql-tag"
 import { NzMessageService } from "ng-zorro-antd/message"
 import { Router } from "@angular/router"
+import Cookies from "universal-cookie/es6"
 
 const loginMutation = gql`
   mutation ($email: String!, $password: String!) {
@@ -36,11 +37,11 @@ export class LoginService {
       })
       .subscribe(
         (result: any) => {
-          sessionStorage.setItem("token", result?.data?.login.token)
+          new Cookies().set("guardian_default_token", result?.data?.login.token)
           this.message.remove(loading)
           this.router.navigateByUrl("/articles")
         },
-        (error) => {
+        (error: any) => {
           this.message.remove(loading)
           this.message.error(error)
         }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core"
 import { NzModalService } from "ng-zorro-antd/modal"
 import { Router } from "@angular/router"
+import Cookies from "universal-cookie/es6"
 
 @Component({
   selector: "app-layout",
@@ -19,7 +20,7 @@ export class LayoutComponent implements OnInit {
       nzTitle: "<i>Do you Want to log out?</i>",
       nzContent: "<b>Will be clean all personal info in your browser</b>",
       nzOnOk: () => {
-        sessionStorage.clear()
+        new Cookies().remove("guardian_default_token")
         this.router.navigateByUrl("/login")
       },
     })

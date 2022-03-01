@@ -49,7 +49,7 @@ export class ArticlesComponent implements OnInit {
         this.pageInfo = result.data.articles.pageInfo
         this.loading = false
       },
-      error: (error) => {
+      error: (error: any) => {
         this.message.error(error)
         this.loading = false
       },
