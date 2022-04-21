@@ -9,6 +9,7 @@ const routes: Routes = [
     path: "",
     component: LayoutComponent,
     children: [
+      { path: '',   redirectTo: 'articles', pathMatch: 'full' },
       {
         path: "articles",
         loadChildren: () =>
