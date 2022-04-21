@@ -19,7 +19,7 @@
       nzMode="inline"
       [nzInlineCollapsed]="isCollapsed"
     >
-      <li nz-submenu nzOpen nzTitle="文章管理" nzIcon="dashboard">
+      <li nz-submenu nzOpen nzTitle="文章管理" nzIcon="audit">
         <ul>
           <li nz-menu-item nzMatchRouter>
             <a routerLink="/articles">文章列表</a>
@@ -29,17 +29,24 @@
           </li>
         </ul>
       </li>
-      <li nz-submenu nzOpen nzTitle="分类管理" nzIcon="form">
+      <li nz-submenu nzOpen nzTitle="分类管理" nzIcon="tags">
         <ul>
           <li nz-menu-item nzMatchRouter>
             <a routerLink="/categories">分类列表</a>
           </li>
         </ul>
       </li>
-      <li nz-submenu nzOpen nzTitle="友链管理" nzIcon="form">
+      <li nz-submenu nzOpen nzTitle="友链管理" nzIcon="share-alt">
         <ul>
           <li nz-menu-item nzMatchRouter>
             <a routerLink="/links">友链列表</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="系统信息" nzIcon="appstore-add">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/system-info">系统信息</a>
           </li>
         </ul>
       </li>

@@ -1,0 +1,24 @@
+nz-form-label {
+  width: 100px;
+}
+
+.common-content {
+  >div {
+    display: flex;
+    width: 800px;
+    margin-bottom: 20px;
+    align-items: center;
+    position: relative;
+
+    >label {
+      width: 200px;
+      font-size: 14px;
+    }
+
+    >button {
+      position: absolute;
+      right: 0;
+      top: 20px;
+    }
+  }
+}

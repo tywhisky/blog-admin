@@ -43,6 +43,11 @@ const routes: Routes = [
         loadChildren: () =>
           import("./pages/links/links.module").then((m) => m.LinksModule),
       },
+      {
+        path: "system-info",
+        loadChildren: () =>
+          import("./pages/system/system.module").then((m) => m.SystemModule),
+      },
     ],
   },
   {

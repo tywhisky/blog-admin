@@ -33,6 +33,7 @@ import { NzModalModule } from "ng-zorro-antd/modal"
 import { NzButtonModule } from "ng-zorro-antd/button"
 import { EditArticleComponent } from "./pages/edit-article/edit-article.component"
 import { LinksComponent } from "./pages/links/links.component"
+import { SystemComponent } from "./pages/system/system.component"
 import { NzDrawerModule } from "ng-zorro-antd/drawer"
 import { NzFormModule } from "ng-zorro-antd/form"
 import { NzInputNumberModule } from "ng-zorro-antd/input-number"
@@ -62,6 +63,7 @@ const defaultOptions: DefaultOptions = {
     MyInputComponent,
     CategoriesComponent,
     LinksComponent,
+    SystemComponent
   ],
   imports: [
     BrowserModule,
